@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>        
+        <add id="AJH_SalesPerson::salesorder" title="Solarflexion Salespersons" module="AJH_SalesPerson" sortOrder="10" parent="Magento_Sales::sales" resource="AJH_SalesPerson::salesorder"/>
+        <add id="AJH_SalesPerson::manage_sales_person" title="Manage Orders" module="AJH_SalesPerson" sortOrder="401" parent="AJH_SalesPerson::salesorder" resource="AJH_SalesPerson::managesalesperson" action="ajh_salesperson/salesorder/index" />
+        <add id="AJH_SalesPerson::manage_sales_person_list" title="Manage Salespersons" module="AJH_SalesPerson" sortOrder="410" parent="AJH_SalesPerson::salesorder" resource="AJH_SalesPerson::managesalesperson" action="ajh_salesperson/salesperson/index" />
+    </menu>
+</config>
