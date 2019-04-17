@@ -25,7 +25,7 @@ class Edit extends \Magento\Backend\App\Action {
      */
     public function __construct(
     Action\Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory, \Magento\Framework\Registry $registry
-    ) {
+    ) {        
         $this->resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $registry;
         parent::__construct($context);
@@ -59,7 +59,7 @@ class Edit extends \Magento\Backend\App\Action {
      */
     public function execute() {
         $id = $this->getRequest()->getParam('id');
-        $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPerson');
+        $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPersonList');                
 
         if ($id) {
             $model->load($id);
@@ -77,7 +77,7 @@ class Edit extends \Magento\Backend\App\Action {
             $model->setData($data);
         }
 
-        $this->_coreRegistry->register('salesperson_salesperson', $model);
+        $this->_coreRegistry->register('ajh_salesperson_salespersonlist', $model);                
 
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_initAction();

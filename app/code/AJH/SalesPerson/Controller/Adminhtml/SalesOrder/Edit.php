@@ -1,9 +1,11 @@
 <?php
+
 namespace AJH\SalesPerson\Controller\Adminhtml\SalesOrder;
 
 use Magento\Backend\App\Action;
 
-class Edit extends \Magento\Backend\App\Action{
+class Edit extends \Magento\Backend\App\Action {
+
     /**
      * Core registry
      *
@@ -22,9 +24,7 @@ class Edit extends \Magento\Backend\App\Action{
      * @param \Magento\Framework\Registry $registry
      */
     public function __construct(
-        Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
-        \Magento\Framework\Registry $registry
+    Action\Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory, \Magento\Framework\Registry $registry
     ) {
         $this->resultPageFactory = $resultPageFactory;
         $this->_coreRegistry = $registry;
@@ -34,8 +34,7 @@ class Edit extends \Magento\Backend\App\Action{
     /**
      * {@inheritdoc}
      */
-    protected function _isAllowed()
-    {
+    protected function _isAllowed() {
         return $this->_authorization->isAllowed('AJH_SalesPerson::save');
     }
 
@@ -44,8 +43,7 @@ class Edit extends \Magento\Backend\App\Action{
      *
      * @return \Magento\Backend\Model\View\Result\Page
      */
-    protected function _initAction()
-    {
+    protected function _initAction() {
         // load layout, set active menu and breadcrumbs
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
@@ -59,39 +57,40 @@ class Edit extends \Magento\Backend\App\Action{
      * @return \Magento\Backend\Model\View\Result\Page|\Magento\Backend\Model\View\Result\Redirect
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
-    public function execute()
-    {
+    public function execute() {
         $id = $this->getRequest()->getParam('id');
         $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPerson');
 
-//        if ($id) {
-//            $model->load($id);
-//            if (!$model->getId()) {
-//                $this->messageManager->addError(__('This employee no longer exists.'));
-//                /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
-//                $resultRedirect = $this->resultRedirectFactory->create();
-//
-//                return $resultRedirect->setPath('*/*/');
-//            }
-//        }
+        if ($id) {
+            $model->load($id);
+            if (!$model->getId()) {
+                $this->messageManager->addError(__('This salesperson no longer exists.'));
+                /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+                $resultRedirect = $this->resultRedirectFactory->create();
 
+                return $resultRedirect->setPath('*/*/');
+            }
+        }
+        
         $data = $this->_objectManager->get('Magento\Backend\Model\Session')->getFormData(true);
+        
+
         if (!empty($data)) {
             $model->setData($data);
-        }
-
-        $this->_coreRegistry->register('ajh_salesperson_salesperson', $model);
+        }        
+        
+        $this->_coreRegistry->register('ajh_salesperson_salesorder', $model);                
 
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_initAction();
         $resultPage->addBreadcrumb(
-            $id ? __('Edit Employee') : __('New Employee'),
-            $id ? __('Edit Employee') : __('New Employee')
+                $id ? __('Edit Order Sales Person') : __('New Sales Person'), $id ? __('Edit Sales Person') : __('New Sales Person')
         );
-        $resultPage->getConfig()->getTitle()->prepend(__('Employee'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Sales Person'));
         $resultPage->getConfig()->getTitle()
-            ->prepend($model->getId() ? $model->getTitle() : __('New Employee'));
+                ->prepend($model->getId() ? $model->getTitle() : __('New Sales Person'));
 
         return $resultPage;
     }
+
 }

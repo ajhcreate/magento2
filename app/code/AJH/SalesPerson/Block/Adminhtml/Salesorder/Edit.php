@@ -1,5 +1,5 @@
 <?php
-namespace AJH\SalesPerson\Block\Adminhtml\Salesperson;
+namespace AJH\SalesPerson\Block\Adminhtml\Salesorder;
 
 class Edit extends \Magento\Backend\Block\Widget\Form\Container
 {
@@ -19,8 +19,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
         \Magento\Backend\Block\Widget\Context $context,
         \Magento\Framework\Registry $registry,
         array $data = []
-    ) {
-                
+    ) {                        
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);
     }
@@ -34,7 +33,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     {
         $this->_objectId = 'id';
         $this->_blockGroup = 'AJH_SalesPerson';
-        $this->_controller = 'adminhtml_salesperson';
+        $this->_controller = 'adminhtml_salesorder';
 
         parent::_construct();
 
@@ -70,7 +69,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      * @return \Magento\Framework\Phrase
      */
     public function getHeaderText()
-    {        
+    {
         if ($this->_coreRegistry->registry('ajh_salesperson_salesorder')->getId()) {
             return __("Edit SalesPerson '%1'", $this->escapeHtml($this->_coreRegistry->registry('ajh_salesperson_salesperson')->getTitle()));
         } else {

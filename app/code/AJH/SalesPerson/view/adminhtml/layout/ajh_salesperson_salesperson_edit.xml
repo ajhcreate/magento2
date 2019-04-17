@@ -3,7 +3,7 @@
     <update handle="editor"/>
     <body>
         <referenceContainer name="content">
-            <block class="AJH\SalesPerson\Block\Adminhtml\Salesorder\Edit" name="salesperson_salesorder_edit"/>
+            <block class="AJH\SalesPerson\Block\Adminhtml\Salesperson\Edit" name="salesperson_salesperson_edit"/>
         </referenceContainer>
     </body>
 </page>

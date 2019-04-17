@@ -33,23 +33,24 @@ class Save extends \Magento\Backend\App\Action
         $data = $this->getRequest()->getPostValue();
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
+                
         if ($data) {
-            /** @var \AJH\SalesPerson\Model\SalesPerson $model */
-            $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPerson');
+            /** @var \AJH\SalesPerson\Model\SalesPersonList $model */
+            $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPersonList');
 
             $id = $this->getRequest()->getParam('id');
-            if ($id) {
+            if ($id) {                
                 $model->load($id);
-            }
+            }                        
 
             $model->setData($data);
 
             $this->_eventManager->dispatch(
-                'adminjoins_employee_prepare_save',
-                ['employee' => $model, 'request' => $this->getRequest()]
+                'salesperson_salesperson_prepare_save',
+                ['salesperson' => $model, 'request' => $this->getRequest()]
             );
 
-            try {
+            try {                
                 $model->save();
                 $this->messageManager->addSuccess(__('You saved this sales person.'));
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
