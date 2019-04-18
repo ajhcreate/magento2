@@ -59,7 +59,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic {
         $model = $this->_coreRegistry->registry('ajh_salesperson_salespersonlist');                
 
         /* Sales Order data */
-        $salesPersonData = $this->_modelSalesPerson->create()->getCollection()->getData();                   
+        $salesPersonData = $this->_modelSalesPerson->create()->getCollection()->getData();                                   
 
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
@@ -81,7 +81,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic {
         );
 
         $fieldset->addField(
-                'note', 'textarea', ['name' => 'note', 'label' => __('Note'), 'title' => __('Note'), 'required' => false]
+                'note', 'textarea', ['name' => 'note', 'label' => __('Comment'), 'title' => __('Comment'), 'required' => false]
         );
 
         if ($model->getId()) {

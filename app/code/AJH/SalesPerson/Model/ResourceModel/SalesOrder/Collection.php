@@ -32,8 +32,11 @@ class Collection extends AbstractCollection {
         $model = $objectManager->create('\AJH\SalesPerson\Model\SalesOrder');
         $params = $model->getPosts();
         
-        $id = isset($params['id']) && $params['id']?$params['id']:0;                        
+        $id = isset($params['order_id']) && $params['order_id']?$params['order_id']:0;    
+                
 
+        /* main_table: sales_order_address */
+        
         $this->getSelect()->joinLeft(
                 ['secondTable' => $this->getTable('ajh_salesperson_orders')], 'main_table.parent_id = secondTable.sales_order_id', ['secondTable.id as sales_person_order_id', 'secondTable.sales_order_id as orderId', 'secondTable.note as note', 'main_table.parent_id as sales_order_id']
         );
@@ -42,11 +45,13 @@ class Collection extends AbstractCollection {
         );
         $this->getSelect()->joinLeft(
                 ['fourthTable' => $this->getTable('sales_order')], 'main_table.parent_id = fourthTable.entity_id', ['fourthTable.created_at as date']
-        )->group('parent_id');
+        )->group('parent_id');                        
         
         if($id){
             $this->getSelect()->where("main_table.parent_id = '{$id}'");
         }
+        
+        
     }
 
 }

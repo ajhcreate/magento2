@@ -1,25 +1,23 @@
 <?php
+
 namespace AJH\SalesPerson\Controller\Adminhtml\SalesOrder;
 
 use Magento\Backend\App\Action;
 use Magento\TestFramework\ErrorLog\Logger;
 
-class Save extends \Magento\Backend\App\Action
-{
+class Save extends \Magento\Backend\App\Action {
 
     /**
      * @param Action\Context $context
      */
-    public function __construct(Action\Context $context)
-    {
+    public function __construct(Action\Context $context) {
         parent::__construct($context);
     }
 
     /**
      * {@inheritdoc}
      */
-    protected function _isAllowed()
-    {
+    protected function _isAllowed() {
         return $this->_authorization->isAllowed('AJH_SalesPerson::save');
     }
 
@@ -28,26 +26,26 @@ class Save extends \Magento\Backend\App\Action
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function execute()
-    {
+    public function execute() {
         $data = $this->getRequest()->getPostValue();
-        
+
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($data) {
             /** @var \AJH\SalesPerson\Model\SalesPerson $model */
-            $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPerson');                        
+            $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPerson');
 
             $id = $this->getRequest()->getParam('id');
-            if ($id) {
+            if (intval($id) > 0) {
                 $model->load($id);
+            } else {
+                unset($data['id']);
             }
 
             $model->setData($data);
 
             $this->_eventManager->dispatch(
-                'salesperson_salesperson_prepare_save',
-                ['salesperson' => $model, 'request' => $this->getRequest()]
+                    'salesperson_salesperson_prepare_save', ['salesperson' => $model, 'request' => $this->getRequest()]
             );
 
             try {
@@ -71,4 +69,5 @@ class Save extends \Magento\Backend\App\Action
         }
         return $resultRedirect->setPath('*/*/');
     }
+
 }

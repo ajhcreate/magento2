@@ -11,21 +11,34 @@ class UpgradeSchema implements UpgradeSchemaInterface {
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context) {
 
         $installer = $setup;
-        $installer->startSetup();        
-        
-        if (version_compare($context->getVersion(), '1.0.1', '<')) {            
+        $installer->startSetup();
+
+        if (version_compare($context->getVersion(), '1.0.3', '<')) {
+            $sales_person_table = $installer->getTable('ajh_salesperson');
+
+            $installer->getConnection()->addColumn($sales_person_table, 'note', [
+                'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                'length' => 255,
+                'unsigned' => true,
+                'nullable' => true,
+                'default' => NULL,
+                'comment' => 'Comment'
+            ]);
+        }
+
+        if (version_compare($context->getVersion(), '1.0.1', '<')) {
 
             $sales_person_table = $installer->getTable('ajh_salesperson');
-                        
+
             $installer->getConnection()->addColumn($sales_person_table, 'comment', [
                 'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-                'length'    => 255,
+                'length' => 255,
                 'unsigned' => true,
                 'nullable' => false,
                 'default' => '0',
                 'comment' => 'Comment'
             ]);
-            
+
 
             if (!$installer->tableExists('ajh_salesperson_orders')) {
                 $table = $installer->getConnection()->newTable(

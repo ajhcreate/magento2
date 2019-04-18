@@ -31,6 +31,47 @@
             </argument>
         </argument>
     </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+            </item>
+        </argument>
+        <paging name="listing_paging">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="provider" xsi:type="string">salesperson_salesorder_listing.salesperson_salesorder_listing.listing_top.bookmarks</item>
+                        <item name="namespace" xsi:type="string">current.paging</item>
+                    </item>
+                    <item name="selectProvider" xsi:type="string">salesperson_salesorder_listing.salesperson_salesorder_listing.salesperson_salesorder_columns.ids</item>
+                    <item name="displayArea" xsi:type="string">bottom</item>
+                    <item name="options" xsi:type="array">
+                        <item name="20" xsi:type="array">
+                            <item name="value" xsi:type="number">20</item>
+                            <item name="label" xsi:type="string" translate="true">20</item>
+                        </item>
+                        <item name="30" xsi:type="array">
+                            <item name="value" xsi:type="number">30</item>
+                            <item name="label" xsi:type="string" translate="true">30</item>
+                        </item>
+                        <item name="50" xsi:type="array">
+                            <item name="value" xsi:type="number">50</item>
+                            <item name="label" xsi:type="string" translate="true">50</item>
+                        </item>
+                        <item name="100" xsi:type="array">
+                            <item name="value" xsi:type="number">100</item>
+                            <item name="label" xsi:type="string" translate="true">100</item>
+                        </item>
+                        <item name="200" xsi:type="array">
+                            <item name="value" xsi:type="number">200</item>
+                            <item name="label" xsi:type="string" translate="true">200</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </paging>
+    </container>
     <columns name="spinner_columns">
 <!--        <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
@@ -106,7 +147,7 @@
                 </item>
             </argument>
         </column>
-        <column name="salesperson">
+        <column name="salesperson" class="AJH\SalesPerson\Ui\Component\Listing\Column\SalesPersonSelect">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>                    
@@ -116,7 +157,7 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Salesperson</item>
+                    <item name="label" xsi:type="string" translate="true">Salesperson</item>                    
                 </item>
             </argument>
         </column>
@@ -127,7 +168,7 @@
                     <item name="editor" xsi:type="array">
                         <item name="editorType" xsi:type="string">text</item>                        
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Additional Notes</item>
+                    <item name="label" xsi:type="string" translate="true">Comments</item>
                 </item>
             </argument>
         </column>

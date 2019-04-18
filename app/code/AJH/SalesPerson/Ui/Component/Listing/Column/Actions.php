@@ -49,8 +49,8 @@ class Actions extends Column {
                 $name = $this->getData('name');
                 if (isset($item['entity_id'])) {
                     $item[$name]['edit'] = [
-                        'href' => $this->urlBuilder->getUrl($this->editUrl, ['id' => $item['parent_id']]),
-                        'label' => __('Edit Salesperson')
+                        'href' => $this->urlBuilder->getUrl($this->editUrl, ['order_id' => $item['parent_id']]),
+                        'label' => __('Update Salesperson')
                     ];
 //                    $item[$name]['delete'] = [
 //                        'href' => $this->urlBuilder->getUrl(self::SALESPERSON_URL_PATH_DELETE, ['id' => $item['parent_id']]),

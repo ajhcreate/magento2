@@ -60,7 +60,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic {
         $model = $this->_coreRegistry->registry('ajh_salesperson_salesorder');        
 
         /* Sales Order data */
-        $salesPersonData = $this->_modelSalesPersonList->create()->getCollection()->getData();                
+        $salesPersonData = $this->_modelSalesPersonList->create()->getCollection()->getData();                                
         
         $sales_persons_options = array();
         foreach ($salesPersonData as $val) {
@@ -68,7 +68,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic {
         }
         
         /* Sales Order data */
-        $salesOrderData = $this->_modelSalesOrder->create()->getCollection()->getData();                
+        $salesOrderData = $this->_modelSalesOrder->create()->getCollection()->getData();                                
         
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
@@ -121,7 +121,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic {
         ));
 
         $fieldset->addField(
-                'note', 'textarea', ['name' => 'note', 'label' => __('Note'), 'title' => __('Note'), 'required' => false]
+                'note', 'textarea', ['name' => 'note', 'label' => __('Note'), 'title' => __('Comment'), 'required' => false]
         );
         
         $fieldset->addField(

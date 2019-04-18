@@ -59,7 +59,7 @@ class Edit extends \Magento\Backend\App\Action {
      */
     public function execute() {
         $id = $this->getRequest()->getParam('id');
-        $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesPerson');
+        $model = $this->_objectManager->create('AJH\SalesPerson\Model\SalesOrder');
 
         if ($id) {
             $model->load($id);

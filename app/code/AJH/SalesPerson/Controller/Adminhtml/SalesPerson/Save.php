@@ -48,7 +48,7 @@ class Save extends \Magento\Backend\App\Action
             $this->_eventManager->dispatch(
                 'salesperson_salesperson_prepare_save',
                 ['salesperson' => $model, 'request' => $this->getRequest()]
-            );
+            );                        
 
             try {                
                 $model->save();

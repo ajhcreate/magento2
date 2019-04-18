@@ -74,7 +74,7 @@
                             <item name="required-entry" xsi:type="boolean">true</item>
                         </item>
                     </item>
-                    <item name="label" xsi:type="string" translate="true">Note</item>
+                    <item name="label" xsi:type="string" translate="true">Comments</item>
                 </item>
             </argument>
         </column>              

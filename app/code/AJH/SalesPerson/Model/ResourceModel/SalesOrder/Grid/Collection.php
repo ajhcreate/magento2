@@ -113,6 +113,8 @@ class Collection extends SalesOrderCollection implements SearchResultInterface {
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function setItems(array $items = null) {
+        
+        die('testing');
         return $this;
     }
 
